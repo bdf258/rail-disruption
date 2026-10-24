@@ -22,7 +22,7 @@ python3 ${CLAUDE_SKILL_DIR}/scripts/trains.py <command> ...
 | `HUXLEY_URL` | optional | Darwin JSON proxy. Defaults to the public Huxley 2 demo, which has no uptime guarantee. |
 | `DARWIN_ACCESS_TOKEN` | optional | National Rail Darwin (OpenLDBWS) token, sent to the proxy as `accessToken`. Use with a self-hosted Huxley 2 when the demo is down. |
 
-In a cloud session, environment variables are set in the environment's settings (cloud environment menu in the session title bar, then Edit), not pasted into chat. If `RTT_API_TOKEN` is missing, carry on with Darwin-only results and say what is missing.
+Locally, put them in a gitignored `.env` at the repo root (copy `.env.example`); the script reads the nearest `.env` above it, and real environment variables take precedence. In a cloud session, environment variables are set in the environment's settings (cloud environment menu in the session title bar, then Edit), not pasted into chat. If `RTT_API_TOKEN` is missing, carry on with Darwin-only results and say what is missing.
 
 ## Which source to believe
 

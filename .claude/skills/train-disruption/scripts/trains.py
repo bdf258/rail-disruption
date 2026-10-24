@@ -37,6 +37,7 @@ import sys
 from collections import Counter, defaultdict
 from dataclasses import dataclass
 from datetime import date, datetime, timedelta
+from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.parse import quote, urlencode
@@ -44,6 +45,26 @@ from urllib.request import Request, urlopen
 from zoneinfo import ZoneInfo
 
 LONDON = ZoneInfo("Europe/London")
+
+
+def load_dotenv() -> None:
+    """Read KEY=value lines from the nearest .env above this script.
+
+    Variables already set in the environment win, so a cloud environment's
+    settings still override a local file.
+    """
+    for folder in Path(__file__).resolve().parents:
+        env_file = folder / ".env"
+        if env_file.is_file():
+            for line in env_file.read_text().splitlines():
+                key, sep, value = line.partition("=")
+                key = key.strip()
+                if sep and key and not key.startswith("#"):
+                    os.environ.setdefault(key, value.strip().strip("'\""))
+            return
+
+
+load_dotenv()
 
 HUXLEY_URL = os.environ.get("HUXLEY_URL", "https://huxley2.azurewebsites.net").rstrip("/")
 DARWIN_ACCESS_TOKEN = os.environ.get("DARWIN_ACCESS_TOKEN")

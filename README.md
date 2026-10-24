@@ -18,6 +18,8 @@ Commands: `board`, `train`, `journey`, `direct-to`, `tfl`, `london-status`, `crs
 
 Optional: `HUXLEY_URL` and `DARWIN_ACCESS_TOKEN` to use a self-hosted Huxley 2 instead of the public demo.
 
+Copy `.env.example` to `.env` and fill in your token; the script loads it automatically, and real environment variables take precedence.
+
 ## Tests
 
 ```
